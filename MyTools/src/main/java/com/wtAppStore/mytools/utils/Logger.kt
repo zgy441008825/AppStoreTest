@@ -14,7 +14,7 @@ object Logger {
     private const val TAG_VER = BuildConfig.VERSION_NAME
     private const val TAG_APP = "WT_AppStore"
 
-    private fun getTag(tag: String): String = "${TAG_APP}_${TAG_VER}_$tag"
+    private fun getTag(tag: String): String = "[${TAG_APP}_${TAG_VER}] $tag"
 
     fun d(tag: String, msg: String) {
         Log.d(getTag(tag), msg)
@@ -25,13 +25,15 @@ object Logger {
     }
 
     fun w(tag: String, msg: String, throwable: Throwable? = null) {
-        Log.w(getTag(tag), msg)
-        throwable?.printStackTrace()
+        throwable?.apply {
+            Log.w(getTag(tag), msg, throwable)
+        } ?: Log.w(getTag(tag), msg)
     }
 
     fun e(tag: String, msg: String, throwable: Throwable? = null) {
-        Log.e(getTag(tag), msg)
-        throwable?.printStackTrace()
+        throwable?.apply {
+            Log.e(getTag(tag), msg, throwable)
+        } ?: Log.e(getTag(tag), msg)
     }
 
 }

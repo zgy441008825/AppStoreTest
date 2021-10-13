@@ -1,6 +1,7 @@
 package com.wtAppStore.common
 
 import com.wtAppStore.BuildConfig
+import com.wtAppStore.doa.AppStoreDBMgr
 import com.wtAppStore.liveData.MainLiveData
 import com.wtAppStore.mydownloadmgr.DownloadMgr
 import com.wtAppStore.mytools.net.NetTools
@@ -36,9 +37,10 @@ object NetUtils {
                 return@map beanList
             }
             .subscribe({
-                if (it.isNotEmpty())
+                if (it.isNotEmpty()) {
                     MainLiveData.mainAllAppList.postValue(it)
-                else
+                    AppStoreDBMgr.instance.saveAppConfigList(it)
+                } else
                     MainLiveData.mainAllAppList.postValue(null)
             }, {
                 MainLiveData.mainAllAppList.postValue(null)

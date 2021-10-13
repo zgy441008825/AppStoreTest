@@ -16,4 +16,9 @@ object MainLiveData {
      */
     val mainAllAppList = MutableLiveData<Array<AppConfigBean>?>()
 
+    /**
+     * 已安装的应用列表
+     */
+    val mainInstallAppList = MutableLiveData<Array<AppConfigBean>?>()
+
 }

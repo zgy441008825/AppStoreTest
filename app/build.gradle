@@ -39,7 +39,7 @@ android {
     productFlavors {
         WT_S311MCA {
             dimension 'default'
-            buildConfigField ("String", "ConfigHostUrl", '"http://www.baidu.com/"')
+            buildConfigField ("String", "ConfigHostUrl", '"https://www.baidu.com/"')
         }
     }
 }
